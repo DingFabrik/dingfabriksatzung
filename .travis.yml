@@ -1,0 +1,18 @@
+sudo: required
+dist: trusty
+language: bash
+before_install:
+- sudo apt-get -qq update
+- sudo apt-get install -y --no-install-recommends texlive-full
+script:
+- pdflatex -interaction=nonstopmode -halt-on-error *.tex
+deploy:
+  provider: releases
+  api_key:
+    secure: YUWnGdtPEjf9CNOPTC37RwflaA9dfZuN8bQ5iaktFigg0CgvLGv7No/zotEKlxw814p1PeihKSPRVBVqJsuDX0iaCsy4BlmavOUSzojoOEwQCBftZxV7AY3MYv50t/HylAcKYUzNO65jTevFPmgFz/C5DD6M7arCJ4czV0WWQ3JHKw8wXrg0tVJhm7HSCfyMgDtjDRG2p19n7qcT0zNZzZu1CIUXUUW6wKDhmmHU1WwqOzF+0mnifWt2fYe6b1/oz/ABMU7767Zqkt6m+9rkhbVhUNWSeU1fhUyQD7x5ALxCPJGkU9cJhDuC7pgNT7QXwXdsKWOtrPt5tQVYg79YEfL96Ac3iKtJYW48Frq7/P0QBNeBK9/RqakJXISfMKaXiesaeYGrrm9JvSAjA2QsSaNMEGROZfkWZrqlh3R0K54wp93pv6est+OVz7mnVifYHxtJ/iXIKuqCQFbcX4gQfHeGYw6RDB2I2R1r4RGo3hw3sbDh0TW77mwbMVo47Zv4MvOv91zAm8N0qGb3tVyUB2TYQHatCyb3aYfsPSD6fAUlFE8dGdBbH8IjzV/XafXr3uVuEyejE8yZgQhlDK7awRX92nnl1zyAeWOYWApfzObhgNSkvok6nhiroDHc3sNXsTCZIrvYojxQ5hsWCIaQ19EVQWhjYETft6asabrwY+k=
+  skip_cleanup: true
+  file_glob: true
+  file: "*.pdf"
+  on:
+    tags: true
+    repo: DingFabrik/dingfabriksatzung
