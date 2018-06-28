@@ -2,8 +2,9 @@ sudo: required
 dist: trusty
 language: bash
 before_install:
+- sudo add-apt-repository ppa:jonathonf/texlive-2018
 - sudo apt-get -qq update
-- sudo apt-get install -y --no-install-recommends texlive-full
+- sudo apt-get install -y --no-install-recommends texlive-lang texlive-extra texlive-bin texlive-base
 script:
 - pdflatex -interaction=nonstopmode -halt-on-error *.tex
 deploy:
